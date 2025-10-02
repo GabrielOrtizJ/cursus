@@ -8,5 +8,4 @@ int ft_strlen(const char *c)
 		i++;
 	}
 	return (i);
-	
 }
