@@ -1,6 +1,6 @@
 typedef unsigned long size_t;
 
-char *strdup(const char *s)
+char *ft_strdup(const char *s)
 {
 	size_t i;
 	char *copy;

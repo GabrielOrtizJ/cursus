@@ -1,6 +1,6 @@
 typedef unsigned char size_t;
 
-void *memmove(void *dest, const void *src, size_t count)
+void *ft_memmove(void *dest, const void *src, size_t count)
 {
 
 }
