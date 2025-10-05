@@ -26,5 +26,7 @@ char *ft_strrchr(const char *str, int c);
 char ft_tolower(char c);
 char ft_toupper(char c);
 
+//new ft
+char *ft_substr(char const *s, unsigned int start,size_t len);
 
 #endif
