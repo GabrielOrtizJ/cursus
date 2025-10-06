@@ -1,10 +1,4 @@
-int ft_strlen(const char *c)
-{
-    int count = 0;
-    while (c[count] != '\0')
-        count++;
-    return count;
-}
+#include "libft.h"
 
 int ft_strlcat(char *dest, const char *src, int size)
 {
