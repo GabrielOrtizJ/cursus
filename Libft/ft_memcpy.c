@@ -1,10 +1,29 @@
-typedef unsigned long size_t;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/07 13:56:00 by gortiz-j          #+#    #+#             */
+/*   Updated: 2025/10/07 14:02:29 by gortiz-j         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void *ft_memcpy(void *dest, const void *src, size_t n)
+#include "libft.h"
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-    unsigned char *d = (unsigned char *)dest;
-    const unsigned char *s = (const unsigned char *)src;
-    while (n--)
-        *d++ = *s++;
-    return dest;
+	unsigned char		*d;
+	const unsigned char	*s;
+
+	if (!dest || !src)
+		return (0);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (d == s || n == 0)
+		return (dest);
+	while (n--)
+		*d++ = *s++;
+	return (dest);
 }

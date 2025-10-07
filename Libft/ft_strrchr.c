@@ -1,8 +1,22 @@
-char *ft_strrchr(const char *str, int c)
-{
-	const char *last = 0;
-	char find = (char)c;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/07 14:28:10 by gortiz-j          #+#    #+#             */
+/*   Updated: 2025/10/07 14:29:00 by gortiz-j         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+char	*ft_strrchr(const char *str, int c)
+{
+	const char	*last;
+	char		find;
+
+	last = 0;
+	find = (char)c;
 	while (*str)
 	{
 		if (*str == find)
@@ -12,8 +26,6 @@ char *ft_strrchr(const char *str, int c)
 	if (*str == find)
 	{
 		last = str;
-	} // Para el caso de '\0'
-		
-	return (char *)last;
+	}
+	return ((char *)last);
 }
-
