@@ -12,81 +12,88 @@
 
 #include "libft.h"
 
-void	get_word_bounds(char const *s, char c, int *i, int *start)
+static int	numstring(char const *s1, char c)
 {
-	while (s[*i] == c)
-		(*i)++;
-	*start = *i;
-	while (s[*i] && s[*i] != c)
-		(*i)++;
+	int	comp;
+	int	cles;
+
+	comp = 0;
+	cles = 0;
+	if (*s1 == '\0')
+		return (0);
+	while (*s1 != '\0')
+	{
+		if (*s1 == c)
+			cles = 0;
+		else if (cles == 0)
+		{
+			cles = 1;
+			comp++;
+		}
+		s1++;
+	}
+	return (comp);
 }
 
-int	copy_word(char **res, char const *s, int start, int end)
+static int	numchar(char const *s2, char c, int i)
 {
-	res[0] = (char *)malloc(end - start + 1);
-	if (!res[0])
-		return (0);
-	ft_strlcpy(res[0], s + start, end - start + 1);
-	return (1);
+	int	lenght;
+
+	lenght = 0;
+	while (s2[i] != c && s2[i] != '\0')
+	{
+		lenght++;
+		i++;
+	}
+	return (lenght);
+}
+
+static char	**freee(char const **dst, int j)
+{
+	while (j > 0)
+	{
+		j--;
+		free((void *)dst[j]);
+	}
+	free(dst);
+	return (0);
+}
+
+static char	**affect(char const *s, char **dst, char c, int l)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	j = 0;
+	while (s[i] != '\0' && j < l)
+	{
+		k = 0;
+		while (s[i] == c)
+			i++;
+		dst[j] = (char *)malloc(sizeof(char) * numchar(s, c, i) + 1);
+		if (!dst[j])
+			return (freee((char const **)dst, j));
+		while (s[i] != '\0' && s[i] != c)
+			dst[j][k++] = s[i++];
+		dst[j][k] = '\0';
+		j++;
+	}
+	dst[j] = 0;
+	return (dst);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**result;
-	int		i;
-	int		j;
-	int		start;
-	int		end;
-	int		word_count;
+	char	**dst;
+	int		l;
 
 	if (!s)
 		return (0);
-	word_count = count_words(s, c);
-	result = (char **)malloc((word_count + 1) * sizeof(char *));
-	if (!result)
+	l = numstring(s, c);
+	dst = (char **)malloc(sizeof(char *) * (l + 1));
+	if (!dst)
 		return (0);
-	i = 0;
-	j = 0;
-	while (s[i] && j < word_count)
-	{
-		get_word_bounds(s, c, &i, &start);
-		end = i;
-		if (!copy_word(&result[j], s, start, end))
-			return (ft_free_split(result, j));
-		j++;
-	}
-	result[j] = 0;
-	return (result);
-}
-
-char	**ft_free_split(char **split, int j)
-{
-	while (j >= 0)
-	{
-		free(split[j]);
-		j--;
-	}
-	free(split);
-	return (0);
-}
-
-int	count_words(char const *s, char c)
-{
-	int	count;
-	int	in_word;
-
-	count = 0;
-	in_word = 0;
-	while (*s)
-	{
-		if (*s == c)
-			in_word = 0;
-		else if (!in_word)
-		{
-			in_word = 1;
-			count++;
-		}
-		s++;
-	}
-	return (count);
+	return (affect(s, dst, c, l));
 }
