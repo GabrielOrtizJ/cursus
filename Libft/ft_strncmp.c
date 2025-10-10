@@ -6,19 +6,21 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:23:30 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/07 14:24:59 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/10/10 13:48:14 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(const char *src, const char *dest, int n)
+#include "libft.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (i < n && (src[i] != '\0' || dest[i] != '\0'))
+	while (i < n && (s1[i] || s2[i]))
 	{
-		if (src[i] != dest[i])
-			return ((unsigned char)src[i] - (unsigned char)dest[i]);
+		if ((unsigned char)s1[i] != (unsigned char)s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
 	return (0);

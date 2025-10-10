@@ -6,22 +6,11 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:03:55 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/07 13:04:33 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/10/10 13:02:17 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char c)
+int	ft_isalpha(int c)
 {
-	if (c >= 65 && c <= 90)
-	{
-		return (1024);
-	}
-	else if (c >= 97 && c <= 122)
-	{
-		return (1024);
-	}
-	else
-	{
-		return (0);
-	}
+	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }

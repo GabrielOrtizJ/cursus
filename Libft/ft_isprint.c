@@ -6,18 +6,11 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:05:56 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/07 13:09:53 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/10/10 13:06:20 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(char c)
+int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 126)
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	return (c >= 32 && c <= 126);
 }

@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:52:31 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/07 13:53:36 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/10/10 12:06:43 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memchr(void *buf, int c, size_t n)
 {
-	int				i;
+	size_t			i;
 	unsigned char	*str;
 
 	i = 0;

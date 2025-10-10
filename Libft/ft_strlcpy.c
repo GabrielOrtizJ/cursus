@@ -6,15 +6,15 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:21:23 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/07 14:22:04 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/10/10 13:52:55 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, int dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+	size_t	i;
 
 	if (dstsize == 0)
 		return (ft_strlen(src));

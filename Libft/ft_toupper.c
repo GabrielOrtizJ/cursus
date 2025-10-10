@@ -6,11 +6,11 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:34:41 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/07 14:34:55 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/10/10 13:11:14 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ft_toupper(char c)
+int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 	{
