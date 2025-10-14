@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gortiz-j <gortiz-j@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 21:43:46 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/13 21:43:46 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:09:13 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list *p;
+	t_list	*p;
 
 	p = lst;
 	if (p == NULL || lst == NULL)
@@ -29,4 +29,3 @@ t_list	*ft_lstlast(t_list *lst)
 	}
 	return (p);
 }
-
