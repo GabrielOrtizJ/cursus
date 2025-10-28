@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 18:40:11 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/28 12:20:49 by gortiz-j         ###   ########.fr       */
+/*   Created: 2025/10/28 12:43:46 by gortiz-j          #+#    #+#             */
+/*   Updated: 2025/10/28 12:47:14 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_file(int fd, char *stash)
 {
@@ -82,22 +82,22 @@ char	*ft_get_rest(char *stash, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[1024];
 	char		*line;
 	char		*temp;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (NULL);
-	temp = read_file(fd, stash);
+	temp = read_file(fd, stash[fd]);
 	if (!temp)
 	{
-		if (stash)
-			free(stash);
-		stash = NULL;
+		if (stash[fd])
+			free(stash[fd]);
+		stash[fd] = NULL;
 		return (NULL);
 	}
-	stash = temp;
-	line = ft_get_line(stash);
-	stash = ft_get_rest(stash, line);
+	stash[fd] = temp;
+	line = ft_get_line(stash[fd]);
+	stash[fd] = ft_get_rest(stash[fd], line);
 	return (line);
 }
