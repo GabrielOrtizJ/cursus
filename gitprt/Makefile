@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+         #
+#    By: adiaz-be <adiaz-be@student.42malaga.c      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/05 11:41:31 by gortiz-j          #+#    #+#              #
-#    Updated: 2025/11/05 11:42:44 by gortiz-j         ###   ########.fr        #
+#    Created: 2022/10/13 15:40:29 by adiaz-be          #+#    #+#              #
+#    Updated: 2022/10/13 15:40:33 by adiaz-be         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC	=	ft_printf.c			\
 
 OBJS = $(SRC:.c=.o)
 
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 AR = ar crs
