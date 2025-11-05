@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:43:41 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/10/28 12:47:29 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:55:40 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdint.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 8
+#  define BUFFER_SIZE 42
 # endif
 
 size_t	ft_strlen(char *str);
