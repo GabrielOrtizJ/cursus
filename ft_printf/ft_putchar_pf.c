@@ -6,14 +6,14 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:44:55 by gortiz-j          #+#    #+#             */
-/*   Updated: 2025/11/05 12:36:32 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:18:22 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    ft_putchar_pf(char c, size_t *counter)
+void	ft_putchar_pf(char c, size_t *counter)
 {
-    write(1, &c, 1);
-    (*counter)++;
+	write(1, &c, 1);
+	(*counter)++;
 }
