@@ -1,32 +1,34 @@
-<img src="https://raw.githubusercontent.com/JaeSeoKim/badge42/main/public/badge42_logo.svg" width ="10%"/>
 <h1 align="center">
 	Push swap
 </h1>
 
-<p align="center">
-	<b><i>Development repo for 42 projects</i></b><br>
+*_This project has been created as part of the 42 curriculum by gortiz-j_*
 
 ---
 
 
-Es un proyecto de algoritmo simple de 42  en el que el objetivo sera mostrar por la salida estándar una serie de instrucciones para ordenar de menor a mayor en el stack A los números recibidos. El objetivo principal sera realizar esto en el menor numero posible de acciones.  Sean meros sitios y negativos pero nunca duplicados. En el stack b no habra nada. Tendremos  un numero máximo de acciones permitidas para cada caso:
+It is a simple algorithm project from 42 in which the goal is to output, through standard output, a series of instructions to sort the received numbers in stack A from smallest to largest. The main objective is to achieve this using the smallest possible number of actions. The numbers may be positive or negative, but never duplicated. Stack B must start empty. There is a maximum number of allowed actions for each case:
 
-	•	Ordenar 3 valores: no más de 3 acciones.
-	•	Ordenar 5 valores: no más de 12 acciones.
-	•	Ordenar 100 valores (asignando puntos en función del numero de movimientos):
-	•	5 puntos por menos de 700 acciones.
-	•	4 puntos por menos de 900 acciones.
-	•	3 puntos por menos de 1.100 acciones.
-	•	2 puntos por menos de 1.300 acciones.
-	•	1 puntos por menos de 1.500 acciones.
-	•	Ordenar 500 valores (asignando puntos en función del numero de movimientos):
-	•	5 puntos por menos de  5.500 acciones.
-	•	4 puntos por menos de  7.000 acciones.
-	•	3 puntos por menos de  8.500 acciones.
-	•	2 puntos por menos de  10.000 acciones.
-	•	1 puntos por menos de  11.500 acciones.
+Sorting 3 values: no more than 3 actions.
+Sorting 5 values: no more than 12 actions.
 
-#### 	FUNCIONES  POR ARCHIVO
+Sorting 100 values (scoring based on the number of moves):
+
+•	5 points for fewer than 700 actions.
+•	4 points for fewer than 900 actions.
+•	3 points for fewer than 1,100 actions.
+•	2 points for fewer than 1,300 actions.
+•	1 point for fewer than 1,500 actions.
+
+Sorting 500 values (scoring based on the number of moves):
+
+•	5 points for fewer than 5,500 actions.
+•	4 points for fewer than 7,000 actions.
+•	3 points for fewer than 8,500 actions.
+•	2 points for fewer than 10,000 actions.
+•	1 point for fewer than 11,500 actions.
+
+#### 	FUNCTIONS PER FILE
 
 	•	COST: cost, cheapest_move.
 
@@ -45,7 +47,7 @@ Es un proyecto de algoritmo simple de 42  en el que el objetivo sera mostrar por
 	•	REVERSE_ROTATE: rev_rotate, do_rra, do_rrb, do_rrr.
 
 	•	SORT THREE: biggest_index, sort_three.
-
++
 	•	SORT: push_init, sort_stack, sort.
 
 	•	SPLIT: ft_strlen, countwords, word_dup, ft_cpy, ft_split.
@@ -59,56 +61,47 @@ Es un proyecto de algoritmo simple de 42  en el que el objetivo sera mostrar por
 
 	•	UTILS: free_stack, error_exit, ft_atoi, ft_putstr, abs.
 
-####	MOVIMIENTOS A REALIZAR
+####	MOVEMENTS TO BE PERFORMED
 
-	•	sa : swap a - intercambia los dos primeros elementos encima del stack a. No hace
-	•	nada si hay uno o menos elementos.
-	•	sb : swap b - intercambia los dos primeros elementos encima del stack b. No hace
-	•	nada si hay uno o menos elementos.
-	•	ss : swap a y swap b a la vez.
-	•	pa : push a - toma el primer elemento del stack b y lo pone encima del stack a.
-		No hace nada si b está vacío.
-	•	pb : push b - toma el primer elemento del stack a y lo pone encima del stack b.
-		No hace nada si a está vacío.
-	•	ra : rotate a - desplaza hacia arriba todos los elementos del stack a una posición,
-		de forma que el primer elemento se convierte en el último.
-	•	rb : rotate b - desplaza hacia arriba todos los elementos del stack b una posición,
-		de forma que el primer elemento se convierte en el último.
-	•	rr : rotate a y rotate b - desplaza al mismo tiempo todos los elementos del stack
-		a y del stack b una posición hacia arriba, de forma que el primer elemento se
-		convierte en el último.
-	•	rra : reverse rotate a - desplaza hacia abajo todos los elementos del stack a una
-		posición, de forma que el último elemento se convierte en el primero.
-	•	rrb : reverse rotate b - desplaza hacia abajo todos los elementos del stack b una
-		posición, de forma que el último elemento se convierte en el primero.
-	•	rrr : reverse rotate a y reverse rotate b - desplaza al mismo tiempo todos
-		los elementos del stack a y del stack b una posición hacia abajo, de forma que
-		el último elemento se convierte en el primero.
+	•	sa: swap a – swaps the first two elements at the top of stack a. Does 		nothingif 	there are one or zero elements.
 
-####	PLANTEAMIENTO Y ALGORITMO
+	•sb: swap b – swaps the first two elements at the top of stack b. Does nothing if there are one or zero elements.
 
-	El proyecto esta realizado mediante listas enlazadas. En cada uno de los nodos guardaremos 6 valores que nos permitirán
-	calcular cual es nuestro movimiento mas eficiente para ir ordenando nuestra pila. Este proyecto permite conseguir
-	la máxima puntuación y realizar la corrección con menos movimientos que el tope para la puntuación máxima. 
-	Además nos permitirá admitir los argumentos como un string, mezclados o solo números como argumentos.
-	
-####	TESTERS
-	El tester.sh os generará la cantidad de números aleatorios que querais en el número de pruebas que necesiteis, 
-	y os dará una media de los movmientos realizados para resolverlo.
-	Con python visualazer podreis ver de manera gráfica como va ordenando vuestra pila. 
-	Solo teneis que ejecutar cualquiera de los siguiente comandos 
-	python3 python_visualizer.py `ruby -e "puts (1..100).to_a.shuffle.join(' ')"`  
-	or python3 python_visualizer.py $(seq 1 100 | shuf | tr '\n' ' ')
-	Para push swap tester tendremos que modificar un poquito el script y que el nombre del checker corresponda con el nuestro.
-	
-####	VIDEOS
-	
-	Os dejo un pequeño video que espero ayude a la comprensión.
+	•	ss: swap a and swap b at the same time.
 
+	•	pa: push a – takes the first element at the top of stack b and places it on top of stack a. Does nothing if b is empty.
 
-https://user-images.githubusercontent.com/114256637/224307024-88827f99-d1e8-4b9d-bf63-34d110784871.mp4
+	•	pb: push b – takes the first element at the top of stack a and places it on top
+	of stack b. Does nothing if a is empty.
 
+	•	ra: rotate a – shifts all elements of stack a up by one position, so the first element becomes the last.
 
+	•	rb: rotate b – shifts all elements of stack b up by one position, so the first element becomes the last.
 
-https://user-images.githubusercontent.com/114256637/224306906-7d0beeb2-3641-4d4b-b796-197a67c7b908.mp4
+	•	rr: rotate a and rotate b – shifts all elements of both stacks up by one position at the same time, so the first element becomes the last.
 
+	•	rra: reverse rotate a – shifts all elements of stack a down by one position, so the last element becomes the first.
+
+	•	rrb: reverse rotate b – shifts all elements of stack b down by one position, so the last element becomes the first.
+
+	•	rrr: reverse rotate a and reverse rotate b – shifts all elements of both stacks down by one position at the same time, so the last element becomes the first.
+
+####	APPROACH AND ALGORITHM
+
+	The project is implemented using linked lists. In each node, we will store 6 values ​​that will allow us to calculate the most efficient move to sort our stack. This project allows us to achieve the highest score and perform the correction in fewer moves than the maximum score. Furthermore, it will allow us to accept arguments as a string, mixed strings, or only numbers.
+
+# Instructions
+`make`: first we need to copile our push_swap.  
+`make clean`: deletes all ***.o** created by **make**.  
+`make fclean`: executes **make clean** and deletes **push_swap** program.  
+`make re`: executes **make fclean** and compiles the program again.  
+`./push_swap <numbers>`: push_swap program will be executed using the numbers given and only show the moves made to sort them. It will only accept numbers, an error message will be shown otherwise. Also, the numbers must not repeat and be between the **INT.LIMITS**, if not the error message will appear.  
+`./push_swap <numbers> | wc -l`: will only show the number of moves made.
+
+# Resources
+
+While working on this project, I watched a couple of videos to better understand it, which were helpful in getting started. [helpful video](https://www.youtube.com/watch?v=OaG81sDEpVk) [helpful video](https://www.youtube.com/watch?v=wRvipSG4Mmk)
+
+When starting this task, it's a good idea to use an online visualizer for push_swap; it's very helpful to be able to see what you're doing and every move the program makes.[PushSwap Visualizer](https://push-swap42-visualizer.vercel.app/) [PushSwap Visualizer](https://push.eliotlucas.ch/) it's really intuitive.
+
+**_NO AI WAS USED FOR THIS PROJECT_**
