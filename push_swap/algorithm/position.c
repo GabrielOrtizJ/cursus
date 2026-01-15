@@ -13,8 +13,8 @@
 #include "push_swap.h"
 
 /*	Assigns a position to each element of a stack from top to bottom
-	in ascending order. Is used to calculate the cost of moving a certain number to
-*	a certain position*/
+	in ascending order. Is used to calculate the cost of moving a 
+	certain number to a certain position */
 
 static void	get_position(t_stack **stack)
 {

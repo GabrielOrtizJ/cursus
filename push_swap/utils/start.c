@@ -48,7 +48,7 @@ int	is_duplicate(t_stack *column)
 		tmp = tmp->next;
 	}
 	return (0);
-}	
+}
 
 /*	Assigns an index to each value in stack a. 
 *	The indexes are assigned from highest (stack_size) to lowest (1). */

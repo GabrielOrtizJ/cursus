@@ -10,58 +10,47 @@
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME = push_swap
 
-DEF_COLOR =		\033[0;39m
-GRAY =			\033[0;90m
-RED =			\033[0;91m
-GREEN =			\033[0;92m
-YELLOW =		\033[0;93m
-BLUE =			\033[0;94m
-MAGENTA =		\033[0;95m
-CYAN =			\033[0;96m
-WHITE =			\033[0;97m
-BLACK =			\033[0;99m
-ORANGE =		\033[38;5;209m
-BROWN =			\033[38;2;184;143;29m
-DARK_GRAY =		\033[38;5;234m
-MID_GRAY =		\033[38;5;245m
-DARK_GREEN =	\033[38;2;75;179;82m
-DARK_YELLOW =	\033[38;5;143m
-
 SRCS = main.c \
-		cost.c do_moves.c position.c \
-		push.c reverse_rotate.c \
-		split.c rotate.c sort_three.c sort.c \
-		stack.c start.c swap.c utils.c 
+		algorithm/cost.c \
+		algorithm/do_moves.c \
+		algorithm/position.c \
+		algorithm/sort_three.c \
+		algorithm/sort.c \
+		movements/push.c \
+		movements/reverse_rotate.c \
+		movements/rotate.c \
+		movements/stack.c \
+		movements/swap.c \
+		utils/start.c \
+		utils/split.c \
+		utils/utils.c
 
-INCLUDE = ./push_swap.h
+OBJS = $(SRCS:.c=.o)
+DEPS = $(OBJS:.o=.d)
 
 CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I.
+
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) -o $(NAME)
+	@echo "Created $(NAME)"
 
 %.o: %.c
-			@echo "${BLUE} ◎ $(YELLOW)Compiling   ${RED}→   $(GREEN)$< $(DEF_COLOR)"
-			@${CC} ${CFLAGS} -c $< -o $@
-
-OBJS = ${SRCS:.c=.o}
-
-all:	${NAME}
-
-${NAME}: ${OBJS} $(INCLUDE)
-	@${CC} ${SRCS} -o ${NAME}
-	@echo "\n$(GREEN) Created $(NAME) ✓$(DEF_COLOR)\n"
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-			@${RM} ${OBJS}
-			@echo "\n${GRAY} ◎ $(RED)All objects cleaned successfully ${GRAY}◎$(DEF_COLOR)\n"
+	$(RM) $(OBJS) $(DEPS)
+	@echo "Object files removed"
 
-fclean: 
-			@${RM} ${OBJS}
-			@${RM} ${NAME}
-			@echo "\n${GRAY} ◎ $(RED)All objects and executable cleaned successfully${GRAY} ◎$(DEF_COLOR)\n"
+fclean: clean
+	$(RM) $(NAME)
+	@echo "Executable removed"
 
 re: fclean all
 

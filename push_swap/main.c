@@ -64,11 +64,9 @@ void	get_numbers(char *av, t_stack **stack_a)
 			error_exit(NULL, NULL);
 		free(param[i]);
 		i++;
+	}
+	free(param);
 }
-free(param);
-
-}
-
 /* Checks if the input is correct, in which case it initializes stacks a and b,
    assigns each value indexes and sorts the stacks. When sorting is done, frees
    the stacks and exits.

@@ -90,7 +90,8 @@ static void	rotate_b(t_stack **b, int *cost)
 	position in stack A.
 	If the costs of moving stack A and B into position match,
 	both will be rotated or reverse rotated at the same time.
-	They might also be rotated separately, before finally pushing the top B element
+	They might also be rotated separately, before finally pushing
+	the top B element
 	to the top stack A. */
 
 void	do_move(t_stack **a, t_stack **b, int cost_a, int cost_b)

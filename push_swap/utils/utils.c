@@ -56,7 +56,7 @@ long int	ft_atoi(const char *str)
 	isneg = 1;
 	i = 0;
 	if (str[i] == '+')
-	i++;
+		i++;
 	else if (str[i] == '-')
 	{
 		isneg *= -1;

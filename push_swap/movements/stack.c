@@ -65,7 +65,7 @@ t_stack	*before_bottom(t_stack *stack)
 	while (stack && stack->next->next != NULL)
 		stack = stack->next;
 	return (stack);
-}	
+}
 
 /*	Returns the number of elements in a stack. */
 
