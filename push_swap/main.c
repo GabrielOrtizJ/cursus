@@ -25,11 +25,7 @@ int	is_sorted(t_stack *stack)
 	}
 	return (1);
 }
-
 /* Chooses a sorting method depending on the number of values to be sorted. */
-
-//Cuando sea dos y este ordenado? 
-//si son 3 pero esta ordeenado? mas de 3 y ordenado?
 
 static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {

@@ -47,7 +47,7 @@ Sorting 500 values (scoring based on the number of moves):
 	•	REVERSE_ROTATE: rev_rotate, do_rra, do_rrb, do_rrr.
 
 	•	SORT THREE: biggest_index, sort_three.
-+
+	
 	•	SORT: push_init, sort_stack, sort.
 
 	•	SPLIT: ft_strlen, countwords, word_dup, ft_cpy, ft_split.

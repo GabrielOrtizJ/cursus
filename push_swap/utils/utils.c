@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 /* Frees each element in a given stack and sets the stack pointer to NULL. 
-???? porque lo pasamos como  doble puntero*/
+*/
 
 void	free_stack(t_stack **stack)
 
