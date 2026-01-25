@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /*	Pushes the top element of src stack to the top of dest stack. DISTINTO*/
 /*tmp = *src;

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /*	Creates a element(nodo) in the stack with the provided value.
 	Returns the newly created stack element. */

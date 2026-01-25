@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /*	Pushes all the elements of stack a into stack b, except the three last.
 	Smaller values first, then the larger values to help with efficiency.*/

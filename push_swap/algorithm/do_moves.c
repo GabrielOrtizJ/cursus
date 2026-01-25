@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /* Reverse rotates both stacks until one of them is in position.
 	The given cost is negative since both positions are in the bottom half

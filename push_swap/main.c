@@ -12,9 +12,23 @@
 
 #include "push_swap.h"
 
-/*	Checks if a stack is sorted. 
-    Returns 0 if the stack is not sorted, 1 if it is sorted. */
+/* Frees a split array created by ft_split */
+void	free_split(char **param)
+{
+	int	i;
 
+	if (!param)
+		return ;
+	i = 0;
+	while (param[i])
+	{
+		free(param[i]);
+		i++;
+	}
+	free(param);
+}
+
+/* Returns 1 if the stack is sorted, 0 otherwise */
 int	is_sorted(t_stack *stack)
 {
 	while (stack->next != NULL)
@@ -25,20 +39,19 @@ int	is_sorted(t_stack *stack)
 	}
 	return (1);
 }
-/* Chooses a sorting method depending on the number of values to be sorted. */
 
-static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
+/* Chooses the sorting method based on stack size */
+static void	push_swap(t_stack **stack_a, t_stack **stack_b, int size)
 {
-	if (stack_size == 2 && !is_sorted(*stack_a))
+	if (size == 2 && !is_sorted(*stack_a))
 		do_sa(stack_a);
-	else if (stack_size == 3)
+	else if (size == 3)
 		sort_three(stack_a);
-	else if (stack_size > 3 && !is_sorted(*stack_a))
+	else if (size > 3 && !is_sorted(*stack_a))
 		sort(stack_a, stack_b);
 }
 
-/*Fill the stack and check if the input is correct */
-
+/* Splits input, validates numbers, converts and pushes them to stack_a */
 void	get_numbers(char *av, t_stack **stack_a)
 {
 	char		**param;
@@ -46,38 +59,40 @@ void	get_numbers(char *av, t_stack **stack_a)
 	int			i;
 
 	param = ft_split(av, ' ');
+	if (!param)
+		error_exit(stack_a, NULL);
 	i = 0;
-	while (param[i] != NULL)
+	while (param[i])
 	{
-		if (input_is_correct(param[i]))
+		if (!input_is_correct(param[i]))
 		{
-			n = ft_atoi(param[i]);
-			if (n > INT_MAX || n < INT_MIN)
-				error_exit(stack_a, NULL);
-			stack_add(stack_a, stack_new(n));
+			free_split(param);
+			error_exit(stack_a, NULL);
 		}
-		else
-			error_exit(NULL, NULL);
+		n = ft_atoi(param[i]);
+		if (n > INT_MAX || n < INT_MIN)
+		{
+			free_split(param);
+			error_exit(stack_a, NULL);
+		}
+		stack_add(stack_a, stack_new(n));
 		free(param[i]);
 		i++;
 	}
 	free(param);
 }
-/* Checks if the input is correct, in which case it initializes stacks a and b,
-   assigns each value indexes and sorts the stacks. When sorting is done, frees
-   the stacks and exits.
-   system("leaks push_swap");  */
 
+/* Initializes stacks, validates input, sorts and frees everything */
 int	main(int ac, char **av)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	int		stack_size;
-	int		i;
+	t_stack *stack_a;
+	t_stack *stack_b;
+	int     size;
+	int     i;
 
 	i = 1;
-	stack_b = NULL;
 	stack_a = NULL;
+	stack_b = NULL;
 	while (i < ac)
 	{
 		get_numbers(av[i], &stack_a);
@@ -85,9 +100,9 @@ int	main(int ac, char **av)
 	}
 	if (is_duplicate(stack_a))
 		error_exit(&stack_a, NULL);
-	stack_size = get_stack_size(stack_a);
-	get_index(stack_a, stack_size + 1);
-	push_swap(&stack_a, &stack_b, stack_size);
+	size = get_stack_size(stack_a);
+	get_index(stack_a, size + 1);
+	push_swap(&stack_a, &stack_b, size);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

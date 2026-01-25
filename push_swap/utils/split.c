@@ -10,17 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
+#include "../push_swap.h"
 
 static unsigned int	countwords(const char *s, char c)
 {
@@ -28,7 +18,7 @@ static unsigned int	countwords(const char *s, char c)
 
 	count = 0;
 	while (*s)
-	{
+	{	
 		while (*s && c == *s)
 			s++;
 		if (*s)

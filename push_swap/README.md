@@ -6,27 +6,28 @@
 
 ---
 
+####	DESCRIPTION
 
-It is a simple algorithm project from 42 in which the goal is to output, through standard output, a series of instructions to sort the received numbers in stack A from smallest to largest. The main objective is to achieve this using the smallest possible number of actions. The numbers may be positive or negative, but never duplicated. Stack B must start empty. There is a maximum number of allowed actions for each case:
+	It is a simple algorithm project from 42 in which the goal is to output, through standard output, a series of instructions to sort the received numbers in stack A from smallest to largest. The main objective is to achieve this using the smallest possible number of actions. The numbers may be positive or negative, but never duplicated. Stack B must start empty. There is a maximum number of allowed actions for each case:
 
-Sorting 3 values: no more than 3 actions.
-Sorting 5 values: no more than 12 actions.
+	Sorting 3 values: no more than 3 actions.
+	Sorting 5 values: no more than 12 actions.
 
-Sorting 100 values (scoring based on the number of moves):
+	Sorting 100 values (scoring based on the number of moves):
 
-•	5 points for fewer than 700 actions.
-•	4 points for fewer than 900 actions.
-•	3 points for fewer than 1,100 actions.
-•	2 points for fewer than 1,300 actions.
-•	1 point for fewer than 1,500 actions.
+	•	5 points for fewer than 700 actions.
+	•	4 points for fewer than 900 actions.
+	•	3 points for fewer than 1,100 actions.
+	•	2 points for fewer than 1,300 actions.
+	•	1 point for fewer than 1,500 actions.
 
-Sorting 500 values (scoring based on the number of moves):
+	Sorting 500 values (scoring based on the number of moves):
 
-•	5 points for fewer than 5,500 actions.
-•	4 points for fewer than 7,000 actions.
-•	3 points for fewer than 8,500 actions.
-•	2 points for fewer than 10,000 actions.
-•	1 point for fewer than 11,500 actions.
+	•	5 points for fewer than 5,500 actions.
+	•	4 points for fewer than 7,000 actions.
+	•	3 points for fewer than 8,500 actions.
+	•	2 points for fewer than 10,000 actions.
+	•	1 point for fewer than 11,500 actions.
 
 #### 	FUNCTIONS PER FILE
 

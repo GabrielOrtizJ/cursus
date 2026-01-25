@@ -25,13 +25,14 @@ SRCS = main.c \
 		movements/swap.c \
 		utils/start.c \
 		utils/split.c \
-		utils/utils.c
+		utils/utils.c \
+		utils/ft_strlen.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(OBJS:.o=.d)
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I.
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 

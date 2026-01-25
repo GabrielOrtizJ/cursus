@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /*	Assigns a position to each element of a stack from top to bottom
 	in ascending order. Is used to calculate the cost of moving a 
