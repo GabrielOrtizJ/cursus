@@ -45,29 +45,10 @@ $>
 
 void ft_putnbr(int i)
 {
-    /* 
-	Si el número es mayor que 9, volvemos a llamar a la función
-	con el número dividido entre 10, de modo que eliminamos un dígito
-	al final (123 => 12)
-     */
     if (i > 9)
         ft_putnbr(i / 10);
-    /* 
-	Entonces podemos imprimir el carácter en el índice i % 10 (123 => 3)
-	en una cadena que contiene todos los dígitos del 0 al 9
-     */
+ 
     write(1, &"0123456789"[i % 10], 1);
-	/*  Explicaré lo que escribí arriba:
-	En C, las cadenas no existen. Cuando almacenamos una cadena, almacenamos un 
-	array de caracteres que termina en un carácter NUL.
-	Así que lo que hice arriba fue escribir una cadena, y luego hice
-	lo mismo que harías para seleccionar un elemento de array con el
-	corchete para seleccionar un índice específico.
-	El segundo argumento de la función de escritura es un carácter.
-	Por eso añadí el carácter & delante de la cadena.
-	De esta manera, le doy a write() un puntero al carácter específico que 
-	quiero escribir.
-	*/
 }
 
 int main(void)
