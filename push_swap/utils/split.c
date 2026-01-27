@@ -18,7 +18,7 @@ static unsigned int	countwords(const char *s, char c)
 
 	count = 0;
 	while (*s)
-	{	
+	{
 		while (*s && c == *s)
 			s++;
 		if (*s)

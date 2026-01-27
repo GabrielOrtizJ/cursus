@@ -51,7 +51,6 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b, int size)
 		sort(stack_a, stack_b);
 }
 
-/* Splits input, validates numbers, converts and pushes them to stack_a */
 void	get_numbers(char *av, t_stack **stack_a)
 {
 	char		**param;
@@ -64,13 +63,8 @@ void	get_numbers(char *av, t_stack **stack_a)
 	i = 0;
 	while (param[i])
 	{
-		if (!input_is_correct(param[i]))
-		{
-			free_split(param);
-			error_exit(stack_a, NULL);
-		}
 		n = ft_atoi(param[i]);
-		if (n > INT_MAX || n < INT_MIN)
+		if (!input_is_correct(param[i]) || (n > INT_MAX || n < INT_MIN))
 		{
 			free_split(param);
 			error_exit(stack_a, NULL);
@@ -85,10 +79,10 @@ void	get_numbers(char *av, t_stack **stack_a)
 /* Initializes stacks, validates input, sorts and frees everything */
 int	main(int ac, char **av)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
-	int     size;
-	int     i;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		size;
+	int		i;
 
 	i = 1;
 	stack_a = NULL;
