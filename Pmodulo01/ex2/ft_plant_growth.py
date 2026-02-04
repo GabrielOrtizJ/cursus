@@ -16,7 +16,7 @@ class Plant():
         self.days += 1
 
     def get_info(self):
-        print(f"{self.name}: {self.height}cm {self.days} days old")
+        return (f"{self.name}: {self.height}cm {self.days} days old")
 
 
 # List of Plant objects
