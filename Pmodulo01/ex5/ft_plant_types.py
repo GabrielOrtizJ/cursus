@@ -74,4 +74,3 @@ for tree in trees:
 for vegetable in vegetables:
     print(f"{vegetable.get_info()}")
     print(f"{vegetable.name} is rich in {vegetable.nutritional_value}")
-
