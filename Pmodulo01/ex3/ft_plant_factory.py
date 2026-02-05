@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+""" We have our plant class that creates instances with name, height,
+and days. With methods like grow age and get info, we create a list
+of plants and then display it."""
+
+
 class Plant():
     def __init__(self, name, height, days):
         self.name = name.capitalize()

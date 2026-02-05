@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""Here we use inheritance to create a parent class and other child
+classes where plant is the parent and flower, tree, and vegetable are
+ children of plant."""
+
+
 class Plant():
     def __init__(self, name, height, days):
         self.name = name.capitalize()
@@ -8,6 +13,10 @@ class Plant():
 
     def info(self, plant_type):
         return f"{self.name} ({plant_type}): {self.height}cm, {self.days} days"
+
+
+"""flower is a child of plant and has color as an attribute and two
+ methods bloom and get_info"""
 
 
 class Flower(Plant):
@@ -22,6 +31,10 @@ class Flower(Plant):
         return f"\n{self.info('Flower')}, {self.color} color"
 
 
+"""tree is a child of plant and has the attribute trunk_diameter and
+ two methods produce_shade and get_info"""
+
+
 class Tree(Plant):
     def __init__(self, name, height, days, trunk_diameter):
         super().__init__(name, height, days)
@@ -33,6 +46,10 @@ class Tree(Plant):
 
     def get_info(self):
         return f"\n{self.info('Tree')}, {self.trunk_diameter}cm diameter"
+
+
+"""vegetable is a child of plant and has the attributes harvest_season,
+nutritional_value and a get_info method"""
 
 
 class Vegetable(Plant):

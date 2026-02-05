@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""In this secure plant class, we use an encapsulation method
+ which is basically converting attributes to private attributes.
+ The advantages of this are that it provides more security and
+makes them more difficult to access."""
+
+
 class SecurePlant():
     def __init__(self, name, height, age):
         self.name = name.capitalize()

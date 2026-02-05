@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""program that simulates plant growth
+"""Program that simulates plant growth
+
+We use a plant class with instance functions: grow, age, get info
 """
 
 
@@ -16,7 +18,7 @@ class Plant():
         self.days += 1
 
     def get_info(self):
-        return (f"{self.name}: {self.height}cm {self.days} days old")
+        return (f"{self.name}: {self.height}cm, {self.days} days old")
 
 
 # List of Plant objects

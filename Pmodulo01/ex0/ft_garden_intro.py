@@ -1,4 +1,10 @@
+#!/usr/bin/env python3
+
 """Using the main function to display the values ​​of a plant
+
+    We use `main` to indicate that if we compile this file,
+    'main' will be compiled, but if this file is imported
+    from elsewhere, `main` will not be compiled.
 """
 if __name__ == "__main__":
     name = "Rose"

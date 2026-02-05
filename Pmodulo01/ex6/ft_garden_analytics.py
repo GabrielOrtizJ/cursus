@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""Here we also use inheritance with polymorphism;
+ plant is the parent class that its children and the
+ methods get info, grow and register"""
+
+
 class Plant:
     def __init__(self, name, height):
         self.name = name.capitalize()
@@ -15,6 +20,10 @@ class Plant:
         stats.regular += 1
 
 
+"""floweringplant is a child of plant and has the attributes color and the
+ methods get info and register"""
+
+
 class FloweringPlant(Plant):
     def __init__(self, name, height, color):
         super().__init__(name, height)
@@ -25,6 +34,10 @@ class FloweringPlant(Plant):
 
     def register(self, stats):
         stats.flowering += 1
+
+
+"""PrizeFlower is a child of FloweringPlant and has the attributes
+ prize_points and the methods get info and register."""
 
 
 class PrizeFlower(FloweringPlant):
@@ -40,9 +53,18 @@ class PrizeFlower(FloweringPlant):
         stats.points += self.prize_points
 
 
+"""GardenManage is the garden manager; it has methods such as add_plant,
+grow_all, report, validate height, create_garden_network, and resume_scores,
+ and attributes such as gardens and total_gardens."""
+
+
 class GardenManager:
     gardens = {}
     total_gardens = 0
+
+    """This is our auxiliary tool, GardenStats. It will help us collect
+      statistics from all gardens and has a report method.
+    """
 
     class GardenStats:
         def __init__(self):
