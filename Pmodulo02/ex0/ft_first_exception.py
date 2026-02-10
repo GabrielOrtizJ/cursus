@@ -5,7 +5,7 @@ def check_temperature(temp_str):
     try:
         temp_int = int(temp_str)
         if temp_int < 0:
-            return f"Error: -{temp_int}°C is too cold for plants (min 0°C)"
+            return f"Error: {temp_int}°C is too cold for plants (min 0°C)"
         elif temp_int > 40:
             return f"Error {temp_int}°C is too hot for plants (max 40°C)"
         else:

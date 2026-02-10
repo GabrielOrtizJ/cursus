@@ -1,52 +1,52 @@
 #!/usr/bin/env python3
 
-# =========================
-# Function that raises errors
-# =========================
+"""
+Module that demonstrates how common built‑in Python exceptions work.
+Each block intentionally triggers a specific error type so it can be
+caught and handled without stopping program execution.
+"""
+
 
 def garden_operations():
-    # ValueError
+    # Test ValueError by trying to convert a non‑numeric string to int
     try:
         print("\nTesting ValueError...")
-        print(int("abc"))
+        print(int("abc"))  # This will fail because "abc" is not a number
     except ValueError as error:
         print(f"Caught ValueError: {error}")
 
-    # ZeroDivisionError
+    # Test ZeroDivisionError by dividing by zero
     try:
         print("\nTesting ZeroDivisionError...")
-        print(4 / 0)
+        print(4 / 0)  # Division by zero always raises ZeroDivisionError
     except ZeroDivisionError as error:
         print(f"Caught ZeroDivisionError: {error}")
 
-    # FileNotFoundError
+    # Test FileNotFoundError by trying to open a missing file
     try:
         print("\nTesting FileNotFoundError...")
-        open("missing.txt")
+        open("missing.txt")  # File does not exist
     except FileNotFoundError as error:
         print(f"Caught FileNotFoundError: {error}")
 
-    # KeyError
+    # Test KeyError by accessing a non‑existent dictionary key
     try:
         print("\nTesting KeyError...")
-        {"rose": "blooming", "oak": "growing"}["missing_plant"]
+        print({"1": "uno", "2": "dos"}["missing_plant"])  # Key not present
     except KeyError as error:
         print(f"Caught KeyError: {error}")
 
-    # Multiple Errors
+    # Test catching multiple possible errors in one block
     try:
         print("\nTesting multiple errors together...")
-        print(4 / 0)
-        open("missing.txt")
-    except (ZeroDivisionError, FileNotFoundError):
+        print(4 / 0)          # First error triggered
+        open("missing.txt")   # Would also fail, but never reached
+    except (ZeroDivisionError, FileNotFoundError, KeyError, ValueError):
         print("Caught an error, but program continues!")
 
 
-# =========================
-# Test Function
-# =========================
-
 def test_error_types():
+    # Entry point for running all error demonstrations
     print("=== Garden Error Types Demo ===")
     garden_operations()
     print("\nAll error types tested successfully!")
