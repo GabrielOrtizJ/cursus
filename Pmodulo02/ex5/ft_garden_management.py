@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 class GardenError(Exception):
     """Base error for garden-related problems"""
     pass
@@ -17,17 +16,19 @@ class WaterError(GardenError):
 
 
 class GardenManager:
-
+    """This is the plant manager for this class; he will be in charge of
+      the plants."""
     def __init__(self):
         self.plants = {}
 
     def add_plant(self, name, water, sun):
         if not name:
-            raise PlantError("Plant name cannot be empty!")
+            raise PlantError("Plant name cannot be empty!\n")
         self.plants[name] = {
             "water": water,
             "sun": sun
         }
+        print(f"Added {name} successfully")
 
     def water_plants(self):
         print("Opening watering system")
@@ -39,7 +40,7 @@ class GardenManager:
                 print(f"Watering {plant} - success")
 
         finally:
-            print("Closing watering system (cleanup)")
+            print("Closing watering system (cleanup)\n")
 
     def check_plant_health(self, name):
         if name not in self.plants:
@@ -49,13 +50,13 @@ class GardenManager:
         sun = self.plants[name]["sun"]
 
         if water < 1:
-            raise PlantError(f"Water level {water} is too low (min 1)")
+            raise PlantError(f"Water level {water} is too low (min 1)\n")
         if water > 10:
-            raise PlantError(f"Water level {water} is too high (max 10)")
+            raise PlantError(f"Water level {water} is too high (max 10)\n")
         if sun < 2:
-            raise PlantError(f"Sunlight hours {sun} is too low (min 2)")
+            raise PlantError(f"Sunlight hours {sun} is too low (min 2)\n")
         if sun > 12:
-            raise PlantError(f"Sunlight hours {sun} is too high (max 12)")
+            raise PlantError(f"Sunlight hours {sun} is too high (max 12)\n")
 
         print(f"{name}: healthy (water: {water}, sun: {sun})")
 
@@ -68,11 +69,7 @@ def test_garden_management():
     print("Adding plants to garden...")
     try:
         garden.add_plant("tomato", 5, 8)
-        print("Added tomato successfully")
-
         garden.add_plant("lettuce", 15, 6)
-        print("Added lettuce successfully")
-
         garden.add_plant("", 4, 6)
     except PlantError as error:
         print("Error adding plant:", error)
@@ -97,7 +94,7 @@ def test_garden_management():
         print("Caught GardenError:", error)
         print("System recovered and continuing...")
 
-    print("Garden management system test complete!")
+    print("\nGarden management system test complete!")
 
 
 test_garden_management()

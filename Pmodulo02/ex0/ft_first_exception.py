@@ -16,13 +16,14 @@ def check_temperature(temp_str):
 
 def test_temperature_input():
     """ this is the check to show tests in this program """
+    print("=== Garden Temperature Checker ===")
     tests = [25, "abc", 100, -50]
 
     for test in tests:
-        print(f"Testing temperature: {test}")
+        print(f"\nTesting temperature: {test}")
         print(check_temperature(test))
 
+    print("\nAll tests completed - program didn't crash!")
 
-print("\nAll tests completed - program didn't crash!")
 
 test_temperature_input()

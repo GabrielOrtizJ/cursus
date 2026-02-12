@@ -43,11 +43,11 @@ def check_plant(status):
 
 # Function that checks water level and may raise WaterError
 def check_water(water):
+    print("Testing WaterError...")
     if water < 0:
         raise WaterError()
 
     print("All OK")
-    print("Testing WaterError...")
 
 
 # Function that tests all custom errors and demonstrates catching them
