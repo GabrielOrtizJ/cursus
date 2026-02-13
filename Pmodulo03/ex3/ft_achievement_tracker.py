@@ -32,9 +32,8 @@ def ft_achievement_tracker() -> None:
     for p1 in players:
         for p2 in players:
             if p1 != p2:
-                shared = shared.union(
-                    players[p1].intersection(players[p2])
-                )
+                shared = shared.union(players[p1].intersection(players[p2]))
+
     rare = all_achievements.difference(shared)
     print(f"Rare achievements (1 player): {rare}\n")
 
