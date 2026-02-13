@@ -4,7 +4,14 @@ import sys
 
 
 def ft_score_analytics() -> None:
+    """
+    Analyze player scores provided through command-line arguments.
 
+    This function reads numeric score values passed via sys.argv, converts
+    them into integers, and stores them in a list. It then computes and
+    displays several useful statistics: total number of players, total score,
+    average score, highest score, lowest score, and the score range.
+    """
     print("=== Player Score Analytics ===")
 
     scores = []
