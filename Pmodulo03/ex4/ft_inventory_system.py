@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
+
 def show_inventory(players, name):
+    """Print a player's inventory with totals and category breakdown."""
     print(f"=== {name.capitalize()}'s Inventory ===")
 
     pdata = players['players'].get(name)
@@ -27,8 +29,10 @@ def show_inventory(players, name):
 
         categories[itype] = categories.get(itype, 0) + units
 
-        print(f"{item} ({itype}, {rarity}): {units}x @"
-              f" {value} gold each = {item_total} gold")
+        print(
+            f"{item} ({itype}, {rarity}): {units}x @ {value} gold each "
+            f"= {item_total} gold"
+        )
 
     print(f"\nInventory value: {total_value} gold")
     print(f"Item count: {total_units} items")
@@ -44,8 +48,11 @@ def show_inventory(players, name):
 
 
 def transaction(players, giver, receiver, item, amount):
-    print(f"=== Transaction: {giver.capitalize()} gives"
-          f" {receiver.capitalize()} {amount} {item}s ===")
+    """Transfer items between players if possible."""
+    print(
+        f"=== Transaction: {giver.capitalize()} gives "
+        f"{receiver.capitalize()} {amount} {item}s ==="
+    )
 
     pdata = players['players']
 
@@ -60,18 +67,17 @@ def transaction(players, giver, receiver, item, amount):
         print("Transaction failed: not enough items\n")
         return
 
-    # Update giver
     giver_items.update({item: giver_items.get(item) - amount})
     if giver_items.get(item) == 0:
         del giver_items[item]
 
-    # Update receiver
     receiver_items.update({item: receiver_items.get(item, 0) + amount})
 
     print("Transaction successful!\n")
 
 
 def inventory_analytics(players):
+    """Compute richest player, most items, and rarest items."""
     print("=== Inventory Analytics ===")
 
     pdata = players['players']
@@ -79,11 +85,9 @@ def inventory_analytics(players):
 
     richest = None
     richest_value = -1
-
     most_items = None
     most_count = -1
 
-    # Para rare items: contar jugadores, no unidades
     item_owner_count = dict()
 
     for name, info in pdata.items():
@@ -98,8 +102,9 @@ def inventory_analytics(players):
                 total_value += units * value
                 total_units += units
 
-                # Contar cuántos jugadores tienen este ítem
-                item_owner_count[item] = item_owner_count.get(item, 0) + 1
+                item_owner_count[item] = (
+                    item_owner_count.get(item, 0) + 1
+                )
 
         if total_value > richest_value:
             richest_value = total_value
@@ -109,15 +114,26 @@ def inventory_analytics(players):
             most_count = total_units
             most_items = name
 
-    # Ítems que solo un jugador posee
-    rare_items = [item for item, owners in item_owner_count.items() if owners == 1]
+    rare_items = [
+        item for item, owners in item_owner_count.items()
+        if owners == 1
+    ]
 
-    print(f"Most valuable player: {richest.capitalize()} ({richest_value} gold)")
-    print(f"Most items: {most_items.capitalize()} ({most_count} items)")
-    print(f"Rarest items: {', '.join(rare_items) if rare_items else 'None'}\n")
+    print(
+        f"Most valuable player: {richest.capitalize()} "
+        f"({richest_value} gold)"
+    )
+    print(
+        f"Most items: {most_items.capitalize()} "
+        f"({most_count} items)"
+    )
+    print(
+        f"Rarest items: {', '.join(rare_items) if rare_items else 'None'}\n"
+    )
 
 
 def inventory_system():
+    """Main function to run the inventory system demo."""
     print("=== Player Inventory System ===\n")
 
     players = {
@@ -160,11 +176,31 @@ def inventory_system():
             }
         },
         'catalog': {
-            'pixel_sword': {'type': 'weapon', 'value': 150, 'rarity': 'common'},
-            'quantum_ring': {'type': 'accessory', 'value': 500, 'rarity': 'rare'},
-            'health_byte': {'type': 'consumable', 'value': 25, 'rarity': 'common'},
-            'data_crystal': {'type': 'material', 'value': 1000, 'rarity': 'legendary'},
-            'code_bow': {'type': 'weapon', 'value': 200, 'rarity': 'uncommon'}
+            'pixel_sword': {
+                'type': 'weapon',
+                'value': 150,
+                'rarity': 'common'
+            },
+            'quantum_ring': {
+                'type': 'accessory',
+                'value': 500,
+                'rarity': 'rare'
+            },
+            'health_byte': {
+                'type': 'consumable',
+                'value': 25,
+                'rarity': 'common'
+            },
+            'data_crystal': {
+                'type': 'material',
+                'value': 1000,
+                'rarity': 'legendary'
+            },
+            'code_bow': {
+                'type': 'weapon',
+                'value': 200,
+                'rarity': 'uncommon'
+            }
         }
     }
 
