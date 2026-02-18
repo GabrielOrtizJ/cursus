@@ -4,7 +4,9 @@ import sys
 
 
 def ft_command_quest() -> None:
-
+    """
+    Display the program name and list all command‑line arguments.
+    """
     nombre = sys.argv[0]
 
     print("=== Command Quest ===")

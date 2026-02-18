@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 def ft_achievement_tracker() -> None:
-
+    """function to tracker """
     print("=== Achievement Tracker System ===\n")
 
     players = {
