@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int	ft_atoi(char *str)
 {
 	int result = 0;
@@ -15,4 +17,8 @@ int	ft_atoi(char *str)
 		str++;
 	}
 	return (sign * result);
+}
+int main()
+{
+	printf("%d", ft_atoi("-------123"));
 }

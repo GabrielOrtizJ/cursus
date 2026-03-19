@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <stdio.h>
 int *ft_range(int start, int end)
 {
 	int i = 0;
@@ -22,4 +22,8 @@ int *ft_range(int start, int end)
 		}
 	}
         return (res);
+}
+int main()
+{
+	printf("%s", ft_range(5,1));
 }

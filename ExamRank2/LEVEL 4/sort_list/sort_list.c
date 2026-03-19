@@ -6,6 +6,9 @@ t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 	int	swap;
 	t_list	*tmp;
 
+	if (!lst)
+    	return (NULL);
+	
 	tmp = lst;
 	while(lst->next != NULL)
 	{
@@ -22,3 +25,4 @@ t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 	lst = tmp;
 	return (lst);
 }
+
