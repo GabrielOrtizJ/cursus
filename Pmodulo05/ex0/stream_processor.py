@@ -93,17 +93,25 @@ if __name__ == "__main__":
         "Hello Nexus World",
         "INFO: Connection timeout",
     ]
+    input_type = [
+        "Numeric",
+        "Text",
+        "Log",
+    ]
 
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
-    print("Initializing Numeric Processor...")
 
-    for processor, data in zip(processors, inputs):
+    for processor, data, type in zip(processors, inputs, input_type):
+        print(f"Initializing {type} Processor...")
         print(f"Processing data: {data}")
         if processor.validate(data):
-            print("Numeric data verified")
+            print(f"{type} data verified")
         else:
-            print("Numeric data not verified")
+            print(f"{type} data not verified")
         print(processor.process(data))
         print()
 
     print("=== Polymorphic Processing Demo ===\n")
+
+    for i, proces in zip(inputs, processors):
+        print(f"{proces.process(i)}")
