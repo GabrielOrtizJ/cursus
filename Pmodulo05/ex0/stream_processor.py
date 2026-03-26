@@ -54,7 +54,7 @@ class TextProcessor(DataProcessor):
         return self.format_output(result)
 
     def validate(self, data: Any) -> bool:
-        return isinstance(data, str) and data.strip() != ""
+        return isinstance(data, str) and data.strip() != "" # no se puede usar instance aqui
 
 
 class LogProcessor(DataProcessor):
@@ -74,7 +74,7 @@ class LogProcessor(DataProcessor):
         return self.format_output(result)
 
     def validate(self, data: Any) -> bool:
-        if not isinstance(data, str):
+        if not isinstance(data, str): # no se puede usar instance aqui
             return False
 
         data = data.strip()
