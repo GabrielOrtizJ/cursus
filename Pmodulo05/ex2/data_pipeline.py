@@ -71,9 +71,8 @@ class LogProcessor(DataProcessor):
         def is_log_entry(d: Any) -> bool:
             if not isinstance(d, dict):
                 return False
-            return all(
-                isinstance(k, str) and
-                isinstance(v, str) for k, v in d.items())
+            return all(isinstance(k, str) and
+                       isinstance(v, str) for k, v in d.items())
 
         if isinstance(data, dict):
             return is_log_entry(data)
@@ -82,8 +81,7 @@ class LogProcessor(DataProcessor):
         return False
 
     def ingest(
-            self, data: Union[
-                Dict[str, str], List[Dict[str, str]]]) -> None:
+            self, data: Union[Dict[str, str], List[Dict[str, str]]]) -> None:
         if not self.validate(data):
             raise ValueError("Improper log data")
         items: List[
@@ -133,12 +131,12 @@ class DataStream:
             return
         for proc in self.processors:
             name = type(proc).__name__.replace("Processor", " Processor")
-            print(f"{name}: total {proc.total_processed} items "
-                  f"processed, remaining {proc.remaining()} on processor")
+            print(f"{name}: total {proc.total_processed} items processed,"
+                  f" remaining {proc.remaining()} on processor")
 
 
 if __name__ == "__main__":
-    print("=== Code Nexus - Data Stream ===\n")
+    print("=== Code Nexus - Data Stream ===")
     print("Initialize Data Stream...")
     ds = DataStream()
     ds.print_processors_stats()
@@ -176,8 +174,8 @@ if __name__ == "__main__":
 
     ds.print_processors_stats()
 
-    print("Consume some elements from the data"
-          " processors: Numeric 3, Text 2, Log 1")
+    print("Consume some elements from the data "
+          "processors: Numeric 3, Text 2, Log 1")
     # consume numeric 3
     for _ in range(3):
         try:
@@ -195,3 +193,5 @@ if __name__ == "__main__":
         log_proc.output()
     except IndexError:
         pass
+
+    ds.print_processors_stats()
