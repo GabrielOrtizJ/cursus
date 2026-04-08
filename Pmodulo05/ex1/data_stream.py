@@ -3,31 +3,41 @@ from typing import Any, List, Dict, Tuple, Union
 
 
 class DataProcessor(ABC):
+    """Abstract base class for all data processors."""
+
     def __init__(self) -> None:
+        """Initialize the processor with an empty queue and counters."""
         self._queue: List[Tuple[int, str]] = []
         self._next_rank = 0
         self.total_processed = 0
 
     @abstractmethod
     def validate(self, data: Any) -> bool:
+        """Return True if the data is valid for this processor."""
         pass
 
     @abstractmethod
     def ingest(self, data: Any) -> None:
+        """Process and store the given data."""
         pass
 
     def output(self) -> Tuple[int, str]:
+        """Return and remove the oldest processed item."""
         if not self._queue:
             raise IndexError("No data")
         rank, data_str = self._queue.pop(0)
         return rank, data_str
 
     def remaining(self) -> int:
+        """Return the number of items still stored."""
         return len(self._queue)
 
 
 class NumericProcessor(DataProcessor):
+    """Processor for numeric data (int, float, or lists of them)."""
+
     def validate(self, data: Any) -> bool:
+        """Check if the data is numeric or a list of numeric values."""
         if isinstance(data, (int, float)):
             return True
         if isinstance(data, list):
@@ -35,6 +45,7 @@ class NumericProcessor(DataProcessor):
         return False
 
     def ingest(self, data: Union[int, float, List[Union[int, float]]]) -> None:
+        """Store numeric data after validation."""
         if not self.validate(data):
             raise ValueError("Improper numeric data")
         items: List[Union[int, float]]
@@ -49,7 +60,10 @@ class NumericProcessor(DataProcessor):
 
 
 class TextProcessor(DataProcessor):
+    """Processor for text data (strings or lists of strings)."""
+
     def validate(self, data: Any) -> bool:
+        """Check if the data is a string or a list of strings."""
         if isinstance(data, str):
             return True
         if isinstance(data, list):
@@ -57,6 +71,7 @@ class TextProcessor(DataProcessor):
         return False
 
     def ingest(self, data: Union[str, List[str]]) -> None:
+        """Store text data after validation."""
         if not self.validate(data):
             raise ValueError("Improper text data")
         items: List[str] = data if isinstance(data, list) else [data]
@@ -67,7 +82,10 @@ class TextProcessor(DataProcessor):
 
 
 class LogProcessor(DataProcessor):
+    """Processor for log entries represented as dictionaries."""
+
     def validate(self, data: Any) -> bool:
+        """Check if the data is a valid log entry or list of log entries."""
         def is_log_entry(d: Any) -> bool:
             if not isinstance(d, dict):
                 return False
@@ -84,6 +102,7 @@ class LogProcessor(DataProcessor):
     def ingest(
             self, data: Union[
                 Dict[str, str], List[Dict[str, str]]]) -> None:
+        """Store log entries after formatting them into readable text."""
         if not self.validate(data):
             raise ValueError("Improper log data")
         items: List[
@@ -100,13 +119,19 @@ class LogProcessor(DataProcessor):
 
 
 class DataStream:
+    """Controller that manages processors and routes incoming data."""
+
     def __init__(self) -> None:
+        """Initialize the DataStream with no processors."""
         self.processors: List[DataProcessor] = []
 
     def register_processor(self, proc: DataProcessor) -> None:
+        """Register a new data processor."""
         self.processors.append(proc)
 
     def process_stream(self, stream: List[Any]) -> None:
+        """Send each element of the stream to the first processor
+          that accepts it."""
         for element in stream:
             handled = False
             for proc in self.processors:
@@ -142,7 +167,7 @@ if __name__ == "__main__":
     print("Initialize Data Stream...")
     ds = DataStream()
     ds.print_processors_stats()
-
+    print()
     batch = [
         "Hello world",
         [3.14, -1, 2.71],
@@ -156,7 +181,7 @@ if __name__ == "__main__":
         ["Hi", "five"],
     ]
 
-    print("Registering Numeric Processor")
+    print("Registering Numeric Processor\n")
     num_proc = NumericProcessor()
     ds.register_processor(num_proc)
 
@@ -173,10 +198,9 @@ if __name__ == "__main__":
 
     print("Send the same batch again")
     ds.process_stream(batch)
-
+    print()
     ds.print_processors_stats()
-
-    print("Consume some elements from the data"
+    print("\nConsume some elements from the data"
           " processors: Numeric 3, Text 2, Log 1")
     # consume numeric 3
     for _ in range(3):
@@ -195,3 +219,5 @@ if __name__ == "__main__":
         log_proc.output()
     except IndexError:
         pass
+
+    ds.print_processors_stats()

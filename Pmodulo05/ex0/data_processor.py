@@ -3,12 +3,16 @@ from typing import Any, List, Dict, Tuple, Union
 
 
 class DataProcessor(ABC):
+    """Abstract base class for all data processors."""
+
     @abstractmethod
     def validate(self, data: Any) -> bool:
+        """Return True if the data is valid for this processor."""
         pass
 
     @abstractmethod
     def ingest(self, data: Any) -> None:
+        """Process and store the given data."""
         pass
 
     def output(self) -> Tuple[int, str]:
@@ -16,18 +20,22 @@ class DataProcessor(ABC):
         Extract the oldest stored item and return (rank, data_as_str).
         Raises IndexError if no data is available.
         """
-        if not hasattr(self, "_queue") or not self._queue:
+        if not self._queue:
             raise IndexError("No data")
         rank, data_str = self._queue.pop(0)
         return rank, data_str
 
 
 class NumericProcessor(DataProcessor):
+    """Processor for numeric data (int, float, or lists of them)."""
+
     def __init__(self) -> None:
+        """Initialize queue and rank counter."""
         self._queue: List[Tuple[int, str]] = []
         self._next_rank = 0
 
     def validate(self, data: Any) -> bool:
+        """Check if data is numeric or a list of numeric values."""
         try:
             if isinstance(data, (int, float)):
                 return True
@@ -38,27 +46,27 @@ class NumericProcessor(DataProcessor):
             return False
 
     def ingest(
-            self, data: Union[
-                int, float, List[Union[int, float]]]) -> None:
-
+            self, data: Union[int, float, List[Union[int, float]]]) -> None:
+        """Store numeric data after validation."""
         if not self.validate(data):
             raise ValueError("Improper numeric data")
         items: List[Union[int, float]]
-        if isinstance(data, list):
-            items = data
-        else:
-            items = [data]
+        items = data if isinstance(data, list) else [data]
         for item in items:
             self._queue.append((self._next_rank, str(item)))
             self._next_rank += 1
 
 
 class TextProcessor(DataProcessor):
+    """Processor for text data (strings or lists of strings)."""
+
     def __init__(self) -> None:
+        """Initialize queue and rank counter."""
         self._queue: List[Tuple[int, str]] = []
         self._next_rank = 0
 
     def validate(self, data: Any) -> bool:
+        """Check if data is a non-empty string or list of strings."""
         try:
             if isinstance(data, str):
                 return data.strip() != ""
@@ -70,24 +78,25 @@ class TextProcessor(DataProcessor):
             return False
 
     def ingest(self, data: Union[str, List[str]]) -> None:
+        """Store text data after validation."""
         if not self.validate(data):
             raise ValueError("Improper text data")
-        items: List[str]
-        if isinstance(data, list):
-            items = data
-        else:
-            items = [data]
+        items: List[str] = data if isinstance(data, list) else [data]
         for item in items:
             self._queue.append((self._next_rank, item))
             self._next_rank += 1
 
 
 class LogProcessor(DataProcessor):
+    """Processor for log entries represented as dictionaries."""
+
     def __init__(self) -> None:
+        """Initialize queue and rank counter."""
         self._queue: List[Tuple[int, str]] = []
         self._next_rank = 0
 
     def validate(self, data: Any) -> bool:
+        """Check if data is a valid log entry or list of log entries."""
         try:
             def is_log_entry(d: Any) -> bool:
                 if not isinstance(d, dict):
@@ -109,14 +118,11 @@ class LogProcessor(DataProcessor):
                 Dict[str, str],
                 List[Dict[str, str]]]
                 ) -> None:
-
+        """Format and store log entries after validation."""
         if not self.validate(data):
             raise ValueError("Improper log data")
-        items: List[Dict[str, str]]
-        if isinstance(data, list):
-            items = data
-        else:
-            items = [data]
+        items: List[
+            Dict[str, str]] = data if isinstance(data, list) else [data]
         for entry in items:
             if "log_level" in entry and "log_message" in entry:
                 text = f"{entry['log_level']}: {entry['log_message']}"
@@ -128,7 +134,7 @@ class LogProcessor(DataProcessor):
 
 
 if __name__ == "__main__":
-    print("=== Code Nexus - Data Processor ===")
+    print("=== Code Nexus - Data Processor ===\n")
 
     np = NumericProcessor()
     print("Testing Numeric Processor...")
@@ -156,7 +162,7 @@ if __name__ == "__main__":
         print(f"Numeric value {i}: {v}")
 
     tp = TextProcessor()
-    print("Testing Text Processor...")
+    print("\nTesting Text Processor...")
     print("Trying to validate input '42':", tp.validate(42))
     print("Processing data: ['Hello', 'Nexus', 'World']")
     tp.ingest(["Hello", "Nexus", "World"])
@@ -172,7 +178,7 @@ if __name__ == "__main__":
         print(f"Text value {i}: {v}")
 
     lp = LogProcessor()
-    print("Testing Log Processor...")
+    print("\nTesting Log Processor...")
     print("Trying to validate input 'Hello':", lp.validate("Hello"))
     logs = [
         {"log_level": "NOTICE",
