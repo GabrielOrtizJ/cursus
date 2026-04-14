@@ -1,4 +1,4 @@
-from ..ex0.creature import Creature
+from ex0.creature import Creature
 from .heal_capability import HealCapability
 from .transform_capability import TransformCapability
 from typing import Optional
@@ -6,7 +6,7 @@ from typing import Optional
 
 class Sproutling(Creature, HealCapability):
     def attack(self):
-        return f"{self.name} uses Vine Whip!!"
+        return f"{self.name} uses Vine Whip!"
 
     def heal(self, target: Optional[str]):
         return f"{self.name} heals itself for a small amount"

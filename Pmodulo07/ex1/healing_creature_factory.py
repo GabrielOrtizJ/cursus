@@ -1,4 +1,4 @@
-from ..ex0.factory import CreatureFactory
+from ex0.factory import CreatureFactory
 from .concrete_creatures import Sproutling, Bloomelle
 
 
