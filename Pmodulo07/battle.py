@@ -12,6 +12,7 @@ def test_factory(factory):
 
     print(evolved.describe())
     print(evolved.attack())
+    print()
 
 
 def battle(factory1, factory2):
@@ -21,9 +22,9 @@ def battle(factory1, factory2):
     c2 = factory2.create_base()
 
     print(c1.describe())
-    print("vs.")
+    print(" vs.")
     print(c2.describe())
-    print("fight!")
+    print(" fight!")
     print(c1.attack())
     print(c2.attack())
 

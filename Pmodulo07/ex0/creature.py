@@ -10,5 +10,8 @@ class Creature(ABC):
     def attack(self) -> str:
         pass
 
+    def attack_normally(self):
+        return f"{self.name} attacks normally."
+
     def describe(self) -> str:
         return f"{self.name} is a {self.tipe} type Creature"
