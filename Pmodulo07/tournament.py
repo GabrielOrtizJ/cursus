@@ -1,6 +1,6 @@
 from ex0 import FlameFactory, AquaFactory
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
-from ex2.battle_strategy import (
+from ex2 import (
     NormalStrategy,
     AggressiveStrategy,
     DefensiveStrategy,
@@ -9,28 +9,40 @@ from ex2.battle_strategy import (
 
 
 def battle(opponents):
-    creatures = []
-    for factory, strategy in opponents:
-        creature = factory.create_base()
-        creatures.append((creature, strategy))
+    print("\n*** Tournament ***")
+    print(f"{len(opponents)} opponents involved")
 
-    print("*** Tournament ***")
-    print(f"{len(creatures)} opponents involved")
+    for i in range(len(opponents)):
+        for j in range(i + 1, len(opponents)):
+            factory1, strategy1 = opponents[i]
+            factory2, strategy2 = opponents[j]
 
-    for i in range(len(creatures)):
-        for j in range(i + 1, len(creatures)):
-            creature1, strategy1 = creatures[i]
-            creature2, strategy2 = creatures[j]
-            print("* Battle *")
+            creature1 = factory1.create_base()
+            creature2 = factory2.create_base()
+
+            print("\n* Battle *")
             print(creature1.describe())
             print("vs.")
             print(creature2.describe())
             print("now fight!")
+
             try:
-                act1 = strategy1.act(creature1)
-                print(act1)
-                act2 = strategy2.act(creature2)
-                print(act2)
+                if not strategy1.is_valid(creature1):
+                    raise InvalidCreatureStrategy(
+                        f"Invalid Creature '{creature1.name}'"
+                        f"for this {strategy1.__class__.__name__.lower()}"
+                        " strategy"
+                    )
+                print(strategy1.act(creature1))
+
+                if not strategy2.is_valid(creature2):
+                    raise InvalidCreatureStrategy(
+                        f"Invalid Creature '{creature2.name}'"
+                        f" for this {strategy2.__class__.__name__.lower()}"
+                        " strategy"
+                    )
+                print(strategy2.act(creature2))
+
             except InvalidCreatureStrategy as e:
                 print(f"Battle error, aborting tournament: {e}")
                 return
@@ -71,9 +83,8 @@ if __name__ == "__main__":
 
     for name, opps in tournaments:
         print(name)
-        opps_list = [f'({f}+{s})' for f, s in opps]
-        opps_str = ', '.join(opps_list)
-        print(f"[ {opps_str} ]")
+        opps_list = [f"({f}+{s})" for f, s in opps]
+        print(f"[ {', '.join(opps_list)} ]")
+
         opponents = [(factories[f], strategies[s]) for f, s in opps]
         battle(opponents)
-        print()  # extra line between tournaments
