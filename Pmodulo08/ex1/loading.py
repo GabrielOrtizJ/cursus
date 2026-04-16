@@ -1,78 +1,78 @@
-import sys
+def fetch_matrix_data():
+    print("\nAnalyzing Matrix data...")
+
+    # Generamos datos simulados con numpy
+    data_size = 50
+    names = [f"Program_{i}" for i in range(data_size)]
+    weights = np.random.randint(10, 100, size=data_size)
+
+    df = pd.DataFrame({
+        "name": names,
+        "weight": weights
+    })
+
+    print(f"Processing {data_size} data points...")
+    return df
 
 
-def check_dependencies():
-    """
-    Función de comparación que muestra las versiones de los
-    paquetes instalados. Es un requisito del manual para
-    asegurar la integridad de los programas cargados.
-    """
-    print("OPERATOR STATUS: Loading programs...\n")
-    print("Checking system dependencies:")
-    print("-" * 30)
+def generate_visualization(df):
+    print("Generating visualization...")
+    pyplot.figure(figsize=(20, 8))
 
-    dependencies = {
-        "pandas": "Data manipulation",
-        "numpy": "Numerical computing",
-        "matplotlib": "Visualization",
-        "requests": "Network access"
-    }
+    pyplot.bar(df["name"], df["weight"])
+    pyplot.xlabel("Program name")
+    pyplot.ylabel("Weight")
+    pyplot.title("Matrix Program Weights")
 
-    loaded_modules = {}
-    all_ok = True
+    pyplot.xticks(rotation=60, fontsize=6)
+    pyplot.tight_layout()
 
-    for lib, desc in dependencies.items():
-        try:
-            module = __import__(lib)
-            # Guardamos la versión detectada
-            version = getattr(module, "__version__", "Unknown")
-            print(f"[OK] {lib:<12} v{version:<10} - {desc} ready")
-            loaded_modules[lib] = module
-        except ImportError:
-            print(f"[ERROR] {lib:<11} NOT FOUND        - Cannot load {desc}")
-            all_ok = False
+    output_file = "matrix_analysis.png"
+    pyplot.savefig(output_file)
+    pyplot.close()
 
-    print("-" * 30)
-    return all_ok, loaded_modules
+    print("Analysis complete!")
+    print(f"Results saved to: {output_file}")
 
 
-def run_analysis(modules):
-    """
-    Ejecuta el análisis de datos de la Matrix y genera la visualización.
-    """
-    pd = modules['pandas']
-    np = modules['numpy']
-    plt = modules['matplotlib'].pyplot
+print("\nLOADING STATUS: Loading programs...")
+print("\nChecking dependencies:")
 
-    print("\nAnalyzing Matrix data streams...")
+if __name__ == '__main__':
 
-    # Generamos datos aleatorios simulando tráfico de la Matrix
-    random_data = np.random.rand(1000, 3)
-    df = pd.DataFrame(random_data, columns=['Level', 'Agents', 'Glitches'])
+    try:
+        import pandas as pd
+        print(f"[OK] {pd.__name__} ({pd.__version__})"
+              " - Data manipulation ready")
+    except ModuleNotFoundError as e:
+        pd = None
+        print("[ERROR]", e)
 
-    print(f"Processing {len(df)} data points...")
+    try:
+        import numpy as np
+        print(f"[OK] {np.__name__} ({np.__version__}) "
+              "- Numerical computation ready")
+    except ModuleNotFoundError as e:
+        np = None
+        print("[ERROR]", e)
 
-    # Configuración del gráfico
-    plt.figure(figsize=(10, 6))
-    df.plot(kind='line', alpha=0.7)
-    plt.title("Matrix Data Analysis - Real Time Stream", fontsize=14)
-    plt.grid(True, linestyle='--', alpha=0.6)
+    try:
+        import matplotlib
+        import matplotlib.pyplot as pyplot
+        print(f"[OK] {matplotlib.__name__} ({matplotlib.__version__})"
+              " - Visualization ready")
+    except ModuleNotFoundError as e:
+        pyplot = None
+        print("[ERROR]", e)
 
-    filename = 'matrix_analysis.png'
-    plt.savefig(filename)
-
-    print("\nAnalysis complete!")
-    print(f"Results encrypted and saved to: {filename}")
-
-
-if __name__ == "__main__":
-    success, modules = check_dependencies()
-
-    if success:
-        run_analysis(modules)
+    if pd and np and pyplot:
+        df = fetch_matrix_data()
+        generate_visualization(df)
     else:
-        print("\nOPERATOR ERROR: Critical programs missing.")
-        print(
-            "Please run 'pip install -r requirements.txt' "
-            "inside your construct.")
-        sys.exit(1)
+        print("\nMissing dependencies!")
+        print("\n-- With poetry --")
+        print("poetry install")
+        print("poetry run python loading.py")
+        print("\n-- With pip --")
+        print("pip install -r requirements.txt")
+        print("python3 loading.py")
