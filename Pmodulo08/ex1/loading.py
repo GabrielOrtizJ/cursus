@@ -1,7 +1,7 @@
 def fetch_matrix_data():
     print("\nAnalyzing Matrix data...")
 
-    # Generamos datos simulados con numpy
+    # we generate dates simulate with numpy
     data_size = 50
     names = [f"Program_{i}" for i in range(data_size)]
     weights = np.random.randint(10, 100, size=data_size)
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     else:
         print("\nMissing dependencies!")
         print("\n-- With poetry --")
-        print("poetry install")
+        print("try python3 -m poetry install")
         print("poetry run python loading.py")
         print("\n-- With pip --")
         print("pip install -r requirements.txt")

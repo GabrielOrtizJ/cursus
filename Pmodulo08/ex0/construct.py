@@ -6,28 +6,31 @@ import os
 def verify_venv():
     """
     Analiza el entorno de ejecución para determinar si estamos dentro
-    del entorno virtual o todavía conectados a la 'Matrix' (entorno global).
+    de un entorno virtual o todavía conectados al entorno global.
     """
+
     try:
-        # En un entorno virtual, sys.prefix apunta a la carpeta del venv,
         en_venv = sys.prefix != sys.base_prefix
 
-        # Obtenemos las rutas de instalación de paquetes
         path_packages = site.getsitepackages([sys.prefix])
 
         if en_venv:
             print("MATRIX STATUS: Welcome to the construct\n")
+
             print(f"Current Python: {sys.executable}")
+
             print(f"Virtual Environment: {os.path.basename(sys.prefix)}")
+
             print(f"Environment Path: {sys.prefix}\n")
 
             print("SUCCESS: You're in an isolated environment!")
             print(
                 "Safe to install packages without affecting "
-                "the global system.\n")
-
+                "the global system.\n"
+            )
             print("Package installation path (Isolated):")
             print(f"-> {path_packages[0]}")
+
         else:
             print("MATRIX STATUS: You're still plugged in\n")
             print(f"Current Python: {sys.executable}")
@@ -36,12 +39,12 @@ def verify_venv():
             print("WARNING: You're in the global environment!")
             print(
                 "The machines can see everything you install. "
-                "This risks corrupting")
+                "This risks corrupting"
+            )
             print("the core architecture of your system.\n")
-
             print("To enter the construct and isolate your data, run:")
             print("-" * 40)
-            print("python -m venv matrix_env")
+            print("python3 -m venv matrix_env")
             print("source matrix_env/bin/activate  # On Unix/macOS")
             print("matrix_env\\Scripts\\activate     # On Windows")
             print("-" * 40)
