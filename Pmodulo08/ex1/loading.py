@@ -3,7 +3,7 @@ def fetch_matrix_data():
 
     # we generate dates simulate with numpy
     data_size = 50
-    names = [f"Program_{i}" for i in range(data_size)]
+    names = [f"number_{i}" for i in range(data_size)]
     weights = np.random.randint(10, 100, size=data_size)
 
     df = pd.DataFrame({
@@ -20,9 +20,9 @@ def generate_visualization(df):
     pyplot.figure(figsize=(20, 8))
 
     pyplot.bar(df["name"], df["weight"])
-    pyplot.xlabel("Program name")
+    pyplot.xlabel("Analyzing Matrix data")
     pyplot.ylabel("Weight")
-    pyplot.title("Matrix Program Weights")
+    pyplot.title("randomly generated numbers to generate an analytical graph")
 
     pyplot.xticks(rotation=60, fontsize=6)
     pyplot.tight_layout()
@@ -71,8 +71,9 @@ if __name__ == '__main__':
     else:
         print("\nMissing dependencies!")
         print("\n-- With poetry --")
-        print("try python3 -m poetry install")
-        print("poetry run python loading.py")
+        print("try pip install poetry")
+        print("python3 -m poetry install")
+        print("python3 -m poetry run python loading.py")
         print("\n-- With pip --")
         print("pip install -r requirements.txt")
         print("python3 loading.py")

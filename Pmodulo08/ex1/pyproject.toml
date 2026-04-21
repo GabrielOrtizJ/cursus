@@ -1,9 +1,9 @@
 [project]
 name = "poesia"
 version = "0.1.0"
-description = "intento de no-suicidio"
+description = "things"
 authors = [
-    {name = "login"}
+    {name = "gabriel"}
 ]
 requires-python = "^3.10"
 dependencies = [
