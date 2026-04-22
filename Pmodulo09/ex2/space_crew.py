@@ -54,7 +54,8 @@ class SpaceMission(BaseModel):
             and len(experienced) / len(self.crew) < 0.5
         ):
             raise ValueError(
-                "Long missions (>365 days) need 50% experienced crew (5+ years)"
+                "Long missions (>365 days) need 50%"
+                "experienced crew (5+ years)"
             )
 
         for member in self.crew:
@@ -62,6 +63,7 @@ class SpaceMission(BaseModel):
                 raise ValueError("All crew members must be active")
 
         return self
+
 
 def main():
     print("Space Mission Crew Validation")
