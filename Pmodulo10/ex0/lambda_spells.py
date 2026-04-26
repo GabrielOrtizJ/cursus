@@ -1,19 +1,19 @@
-from typing import Dict, List
+from typing import List, Dict
 
 
-def artifact_sorter(artifacts: Dict):
+def artifact_sorter(artifacts: List[Dict]) -> List[Dict]:
     return sorted(artifacts, key=lambda a: a["power"], reverse=True)
 
 
-def power_filter(mages: Dict, min_power: int):
+def power_filter(mages: List[Dict], min_power: int) -> List[Dict]:
     return list(filter(lambda m: m["power"] >= min_power, mages))
 
 
-def spell_transformer(spells: List):
+def spell_transformer(spells: List[str]) -> List[str]:
     return list(map(lambda s: f"* {s} *", spells))
 
 
-def mage_stats(mages):
+def mage_stats(mages: List[Dict]) -> Dict:
     return {
         "max_power": max(mages, key=lambda m: m["power"])["power"],
         "min_power": min(mages, key=lambda m: m["power"])["power"],

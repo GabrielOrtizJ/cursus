@@ -5,8 +5,8 @@ import os
 
 def verify_venv():
     """
-    Analiza el entorno de ejecución para determinar si estamos dentro
-    de un entorno virtual o todavía conectados al entorno global.
+    Analyze the execution environment to determine if we are within
+    a virtual environment or still connected to the global environment.
     """
 
     try:
